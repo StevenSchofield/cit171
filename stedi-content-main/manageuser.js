@@ -5,6 +5,36 @@ let password = "";
 let verifypassword = "";
 let passwordRegEx=/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{6,40})/;
 
+let phonenumber = "";
+let phonenumberRegEx = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+
+function setphonenumber(){
+    phonenumber = $("#phonenumber").val();
+
+    if (phonenumber) {
+        var valid = phonenumberRegEx.exec(phonenumber);
+        if (!valid){
+            phonenumber = ""
+            alert('Please enter a valid phone number');
+        }
+    }
+}
+
+function sendtext(){
+    setphonenumber()
+
+    if (!phonenumber){
+        alert('Please enter a valid phone number');
+    } else {
+        $.ajax({
+            type: 'POST',
+            url: 'https://dev.stedi.me/twofactorlogin/'+phonenumber,
+            contentType: 'application/text',
+            dataType: 'text' 
+        });
+    }
+}
+
 function setusername(){
     userName = $("#username").val();
 }
@@ -35,13 +65,13 @@ function savetoken(token){
 function checkexpiredtoken(token){
 // read token from local storage - check with ajax call
     if(window.localStorage){
-    usertoken = localStorage.getItem("token");
+    usertoken = localStorage.getItem('token');
     $.ajax({
        type: 'GET',
         url: '/validate/'+token,
         data: JSON.stringify({usertoken}),
         success: function(data){savetoken(data)},
-        contentType: "application/text",
+        contentType: 'application/text',
         dataType: 'text' })
     }
 }
@@ -54,9 +84,9 @@ function userlogin(){
         url: 'https://dev.stedi.me/login',
         data: JSON.stringify({userName, password}),
         success: function(data) {
-            window.location.href = "/timer.html#"+data;//add the token to the url
+            window.location.href = '/timer.html#'+data;//add the token to the url
         },
-        contentType: "application/text",
+        contentType: 'application/text',
         dataType: 'text'
     });
 
