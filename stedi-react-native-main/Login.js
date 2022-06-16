@@ -1,6 +1,10 @@
 import {useState} from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native";
 
+const sendText = (phoneNumber) => {
+  console.log("PhoneNumber:" , phoneNumber);
+};
+
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [oneTimePassword, setOneTimePassword] = useState("");
@@ -24,14 +28,16 @@ const Login = () => {
         secureTextEntry={true}
       />
       <TouchableOpacity
-      style={styles.button}
-      onPress={()=>console.log("Pressed Button")}
-      >
-      <Text>Send One-Time Password</Text>
-    </TouchableOpacity>
+        style={styles.button}
+        onPress={()=>{
+          sendText(phoneNumber);
+        }}
+        >
+        <Text>Send One-Time Password</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={()=>console.log("Pressed Button")}
+        onPress={()=>console.log("Pressed Login Button")}
         >
         <Text>Login</Text>
       </TouchableOpacity>
