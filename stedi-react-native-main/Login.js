@@ -1,8 +1,14 @@
 import {useState} from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native";
 
-const sendText = (phoneNumber) => {
+const sendText = async(phoneNumber) => {
   console.log("PhoneNumber:" , phoneNumber);
+  await fetch('https://dev.stedi.me/twofactorlogin/'+phoneNumber,{
+    method: 'POST',
+    headers: {
+      'content-type':'application/text'
+    }
+  });
 };
 
 const Login = () => {
