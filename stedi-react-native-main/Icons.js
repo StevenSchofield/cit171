@@ -28,7 +28,7 @@ const Icons = () => {
 };
 
 export default Icons;
-const cardWidth = (Dimensions.get('window').width) / 3;
+const cardWidth = (Dimensions.get('window').width) / 3.06;
 
 const styles = StyleSheet.create({
   icons: {
