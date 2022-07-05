@@ -28,7 +28,7 @@ const Icons = () => {
 };
 
 export default Icons;
-const cardWidth = (Dimensions.get('window').width) / 3.06;
+const cardWidth = (Dimensions.get('window').width) / 3.06; // Initial value had all icons in a single column, edited for my phone
 
 const styles = StyleSheet.create({
   icons: {
