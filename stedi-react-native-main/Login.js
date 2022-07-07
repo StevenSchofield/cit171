@@ -13,6 +13,8 @@ const sendText = async(phoneNumber) => {
 };
 
 const getToken = async({phoneNumber, oneTimePassword, setUserLoggedIn, setUserName}) => {
+  console.log('OTP: ', oneTimePassword);
+
   const tokenResponse = await fetch('https://dev.stedi.me/twofactorlogin',{
     method: 'POST',
     body:JSON.stringify({oneTimePassword, phoneNumber}),
