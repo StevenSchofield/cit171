@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 function Setting(props) {
     return(
       <View>
-      <Text>Welcome {props.loggedInUser}</Text>
+      <Text>{props.loggedInUser}</Text>
       <Button
       title="Log In"
       onPress={() => Alert.alert('Simple Button pressed')}
